@@ -41,6 +41,8 @@ public class MainActivity extends Activity {
         textRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, LogIn.class);
+                startActivity(i);
 
             }
         });

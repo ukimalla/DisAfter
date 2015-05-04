@@ -7,5 +7,6 @@
     <string name="textLeft">Post Disaster Relief Tips</string>
     <string name="textRight">Volunteer</string>
     <string name="title_activity_log_in">Log In</string>
+    <string name="title_activity_sign_up">SignUp</string>
 
 </resources>
