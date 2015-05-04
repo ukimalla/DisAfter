@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="tipsColor">#ff177146</color>
+    <color name="item1">#ff5990ff</color>
+    <color name="item2">#ff32e969</color>
+    <color name="item3">#fff7e44e</color>
+    <color name="item4">#ffff7a55</color>
+    <color name="item5">#ffb283ff</color>
+
+
+</resources>

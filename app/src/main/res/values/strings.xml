@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">DisAfterTest</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_tips">tips</string>
+    <string name="textLeft">Post Disaster Relief Tips</string>
+    <string name="textRight">Volunteer</string>
+
+</resources>
