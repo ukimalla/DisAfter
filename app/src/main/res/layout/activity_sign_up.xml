@@ -7,7 +7,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/item1">
+        android:background="@color/item1"
+        >
 
         <TextView
             android:layout_width="fill_parent"
@@ -25,13 +26,13 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="20dp">
 
@@ -45,7 +46,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName"
+                android:id="@+id/editTextFirstName"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -57,7 +59,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName"
+                android:id="@+id/editTextLastName"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,6 +72,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/editTextUsername_sup"
                 />
 
             <TextView
@@ -81,7 +85,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress"
+                android:id="@+id/editTextEmail"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -93,7 +98,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:id="@+id/editTextPassword_sup"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -105,7 +111,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:id="@+id/editTextPasswordConfirm"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -149,27 +156,36 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"/>
+                android:inputType="phone"
+                android:id="@+id/editTextPhone1"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Landline / Mobile Phone Number"
+                android:text="Landline / Mobile Phone Number 2"
                 android:layout_marginTop="@dimen/signUpText"
                 />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"/>
+                android:inputType="phone"
+                android:id="@+id/editTextPhone2"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Submit"/>
+                android:text="Submit"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/btnSignUpSubmit"
+                />
+            
+            <LinearLayout
+                android:layout_width="20dp"
+                android:layout_height="20dp">
 
-
-
+                </LinearLayout>
 
 
 
