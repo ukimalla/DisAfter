@@ -1,14 +1,40 @@
 package com.example.uki.disafter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.Activity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class campaigns extends Activity {
+
+    //Open Activity Method
+
+    private void openActivity(int position){
+        switch (position){
+            case 1:
+                Intent bacteria_intent = new Intent(campaigns.this, createCampaign.class);
+                startActivity(bacteria_intent);
+                break;
+
+            default:
+                Toast.makeText(campaigns.this, "Cannot open activity", Toast.LENGTH_LONG).show();
+
+        }
+
+
+    }
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +49,25 @@ public class campaigns extends Activity {
         ArrayAdapter theAdapter = new MainActivityAdapter(campaigns.this, theList, 2);
 
         theListView.setAdapter(theAdapter);
+
+
+
+        // Setting up OnClickListener for ListView
+
+        theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                openActivity(position);
+
+            }
+        });
+
+
     }
+
+
+
 
 
 

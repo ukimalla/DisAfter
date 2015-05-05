@@ -10,5 +10,6 @@
     <string name="title_activity_sign_up">SignUp</string>
     <string name="title_activity_volunteer_main">Volunteer Main</string>
     <string name="title_activity_campaigns">Campaigns</string>
+    <string name="title_activity_create_campaign">createCampaign</string>
 
 </resources>

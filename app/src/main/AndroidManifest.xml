@@ -50,6 +50,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.uki.disafter.volunteerMain" />
         </activity>
+        <activity
+            android:name=".createCampaign"
+            android:label="@string/title_activity_create_campaign"
+            android:parentActivityName=".campaigns" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.uki.disafter.campaigns" />
+        </activity>
     </application>
 
 </manifest>
