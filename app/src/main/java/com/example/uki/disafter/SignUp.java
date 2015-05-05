@@ -73,17 +73,22 @@ public class SignUp extends Activity {
 
 
 
+        //SignUp OnClickListener
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
+               // Getting skill value
                String skill = getSkill();
 
 
-
+                // Initializing param NameValuePar to store SignUp Details
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+
+
+                //Fetching values from form and putting it in params
 
 
                 params.add(new BasicNameValuePair("username", String.valueOf(username.getText())));
@@ -95,12 +100,19 @@ public class SignUp extends Activity {
                 params.add(new BasicNameValuePair("email", String.valueOf(email.getText())));
                 params.add(new BasicNameValuePair("skill", skill));
 
+
+                // URL
+
+
                 String url = "http://disafter.hostei.com/signup.php";
 
 
+
+                //Initializing httpEntity
+
                 HttpEntity httpEntity = null;
 
-
+                // Toast to ensure app has run till this point
                 Toast.makeText(SignUp.this, "entering", Toast.LENGTH_LONG).show();
 
 
@@ -109,9 +121,18 @@ public class SignUp extends Activity {
 
                 try
                 {
+
+                    // Toast to ensure "trying"
+
                     Toast.makeText(SignUp.this, "trying", Toast.LENGTH_LONG).show();
 
+
+                    // Setting up httpClient
+
                     DefaultHttpClient httpClient = new DefaultHttpClient();
+
+
+                    //Setting up httpPost and executing it with httpResponse
 
                     HttpPost  httpPost = new HttpPost(url);
                     httpPost.setEntity(new UrlEncodedFormEntity(params));
@@ -119,9 +140,12 @@ public class SignUp extends Activity {
                     HttpResponse httpResponse = httpClient.execute(httpPost);
 
 
+                    //Getting response from server if any.
 
                     httpEntity = httpResponse.getEntity();
                     String response = EntityUtils.toString(httpEntity);
+
+                    //To ensure the code was executed succesfully
 
                     Toast.makeText(SignUp.this, " Success! :)" + response, Toast.LENGTH_LONG).show();
 
@@ -131,11 +155,15 @@ public class SignUp extends Activity {
 
                 } catch (ClientProtocolException e){
                     e.printStackTrace();
+
+                    //Toast for Fail
                     Toast.makeText(SignUp.this,"fail", Toast.LENGTH_LONG);
 
 
                 }catch (IOException e){
                     e.printStackTrace();
+
+                    //Toast for Fail
                     Toast.makeText(SignUp.this,"fail", Toast.LENGTH_LONG);
 
                 }
@@ -222,7 +250,7 @@ public class SignUp extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-
+// Get Skill method
     private String getSkill(){
 
         RadioButton eng = (RadioButton)findViewById(R.id.radioEng);
