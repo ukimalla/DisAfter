@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -37,42 +38,63 @@ import java.util.jar.Attributes;
 
 public class SignUp extends Activity {
 
+
+    RadioButton eng = (RadioButton)findViewById(R.id.radioEng);
+    RadioButton med = (RadioButton)findViewById(R.id.radioMedic);
+    RadioButton neither = (RadioButton)findViewById(R.id.radioNeither);
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        //
+
+
+
+
+
+        final EditText username = (EditText)findViewById(R.id.editTextUsername_sup);
+        final EditText password = (EditText)findViewById(R.id.editTextPassword_sup);
+        final EditText fname = (EditText)findViewById(R.id.editTextFirstName);
+        final EditText lname = (EditText)findViewById(R.id.editTextLastName);
+        final EditText phno1 = (EditText)findViewById(R.id.editTextPhone1);
+        final EditText phno2 = (EditText)findViewById(R.id.editTextPhone2);
+        final EditText email = (EditText)findViewById(R.id.editTextEmail);
+
+
         StrictMode.enableDefaults();
 
         Button btnSignUp = (Button) findViewById(R.id.btnSignUpSubmit);
+
+
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-      //  String[] formDetail = getFormDetails();
+                String skill = getSkill();
 
 
 
-        String skill = getSkill();
-
-        List<NameValuePair> params = new ArrayList<NameValuePair>();
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
 
 
-        params.add(new BasicNameValuePair("username", "ukimalla"));
-        params.add(new BasicNameValuePair("password", "pikachu101"));
-        params.add(new BasicNameValuePair("fname", "Uki"));
-        params.add(new BasicNameValuePair("lname", "Malla"));
-        params.add(new BasicNameValuePair("phno1", "9851064321"));
-        params.add(new BasicNameValuePair("phno2", "014112406"));
-        params.add(new BasicNameValuePair("email", "uki.malla@gmail.com"));
-        params.add(new BasicNameValuePair("skill", skill));
+                params.add(new BasicNameValuePair("username", String.valueOf(username.getText())));
+                params.add(new BasicNameValuePair("password", String.valueOf(password.getText())));
+                params.add(new BasicNameValuePair("fname", String.valueOf(fname.getText())));
+                params.add(new BasicNameValuePair("lname", String.valueOf(lname.getText())));
+                params.add(new BasicNameValuePair("phno1",String.valueOf(phno1.getText())));
+                params.add(new BasicNameValuePair("phno2", String.valueOf(phno2.getText())));
+                params.add(new BasicNameValuePair("email", String.valueOf(email.getText())));
+                params.add(new BasicNameValuePair("skill", skill));
 
-        String url = "http://disafter.hostei.com/signup.php";
+                String url = "http://disafter.hostei.com/signup.php";
 
 
-        HttpEntity httpEntity = null;
+                HttpEntity httpEntity = null;
 
 
                 Toast.makeText(SignUp.this, "entering", Toast.LENGTH_LONG).show();
@@ -81,38 +103,89 @@ public class SignUp extends Activity {
 
 
 
-        try
-        {
-            Toast.makeText(SignUp.this, "trying", Toast.LENGTH_LONG).show();
+                try
+                {
+                    Toast.makeText(SignUp.this, "trying", Toast.LENGTH_LONG).show();
 
-            DefaultHttpClient httpClient = new DefaultHttpClient();
+                    DefaultHttpClient httpClient = new DefaultHttpClient();
 
-            HttpPost  httpPost = new HttpPost(url);
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+                    HttpPost  httpPost = new HttpPost(url);
+                    httpPost.setEntity(new UrlEncodedFormEntity(params));
 
-            HttpResponse httpResponse = httpClient.execute(httpPost);
-
-
-
-            httpEntity = httpResponse.getEntity();
-            String response = EntityUtils.toString(httpEntity);
-
-            Toast.makeText(SignUp.this, "Success! :)" + response, Toast.LENGTH_LONG).show();
+                    HttpResponse httpResponse = httpClient.execute(httpPost);
 
 
 
+                    httpEntity = httpResponse.getEntity();
+                    String response = EntityUtils.toString(httpEntity);
+
+                    Toast.makeText(SignUp.this, "Success! :)" + response, Toast.LENGTH_LONG).show();
 
 
-        } catch (ClientProtocolException e){
-            e.printStackTrace();
-            Toast.makeText(SignUp.this,"fail", Toast.LENGTH_LONG);
 
 
-        }catch (IOException e){
-            e.printStackTrace();
-            Toast.makeText(SignUp.this,"fail", Toast.LENGTH_LONG);
 
-        }
+                } catch (ClientProtocolException e){
+                    e.printStackTrace();
+                    Toast.makeText(SignUp.this,"fail", Toast.LENGTH_LONG);
+
+
+                }catch (IOException e){
+                    e.printStackTrace();
+                    Toast.makeText(SignUp.this,"fail", Toast.LENGTH_LONG);
+
+                }
+            }
+        });
+
+
+
+
+
+
+        // Managing the radio buttons
+
+
+        // Eng radio button
+
+        eng.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    med.setChecked(false);
+                    neither.setChecked(false);
+                }
+
+            }
+        });
+
+
+        //Med radio button
+
+        med.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    eng.setChecked(false);
+                    neither.setChecked(false);
+                }
+
+            }
+        });
+
+        //Neither radio button
+
+        neither.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    eng.setChecked(false);
+                    med.setChecked(false);
+                }
+
             }
         });
 
@@ -145,46 +218,9 @@ public class SignUp extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private String[] getFormDetails(){
-
-        String[] formData= new String[6];
-
-        EditText username = (EditText)findViewById(R.id.editTextUsername_sup);
-        EditText password = (EditText)findViewById(R.id.editTextPassword_sup);
-        EditText fname = (EditText)findViewById(R.id.editTextFirstName);
-        EditText lname = (EditText)findViewById(R.id.editTextLastName);
-        EditText phno1 = (EditText)findViewById(R.id.editTextPhone1);
-        EditText phno2 = (EditText)findViewById(R.id.editTextPhone2);
-        EditText email = (EditText)findViewById(R.id.editTextEmail);
-
-/*
-        formData[0] = String.valueOf(username.getText());
-        formData[1] = String.valueOf(password.getText());
-        formData[2] = String.valueOf(fname.getText());
-        formData[3] = String.valueOf(lname.getText());
-        formData[4] = String.valueOf(phno1.getText());
-        formData[5] = String.valueOf(phno2.getText());
-        formData[6] = String.valueOf(email.getText());
-*/
-
-        formData[0] = "a";
-        formData[1] = "a";
-        formData[2] = "a";
-        formData[3] = "a";
-        formData[4] = "a";
-        formData[5] = "a";
-        formData[6] = "a";
-
-
-        return formData;
-
-
-
-    }
 
     private String getSkill(){
-        RadioButton eng = (RadioButton)findViewById(R.id.radioEng);
-        RadioButton med = (RadioButton)findViewById(R.id.radioMedic);
+
 
         if(eng.isChecked()){
             return "1";
@@ -195,6 +231,8 @@ public class SignUp extends Activity {
         else{return "0";}
 
     }
+
+
 
 
 }
