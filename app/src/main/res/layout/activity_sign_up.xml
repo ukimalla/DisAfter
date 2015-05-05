@@ -131,13 +131,13 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="a doctor / a medical expert"
+                    android:text="a doctor / a medical expert."
                     android:id="@+id/radioMedic" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="an engineer"
+                    android:text="an engineer."
                     android:id="@+id/radioEng" />
                 <RadioButton
                     android:layout_width="wrap_content"

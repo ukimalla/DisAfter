@@ -39,9 +39,7 @@ import java.util.jar.Attributes;
 public class SignUp extends Activity {
 
 
-    RadioButton eng = (RadioButton)findViewById(R.id.radioEng);
-    RadioButton med = (RadioButton)findViewById(R.id.radioMedic);
-    RadioButton neither = (RadioButton)findViewById(R.id.radioNeither);
+
 
 
     @Override
@@ -49,11 +47,10 @@ public class SignUp extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        //
 
-
-
-
+        final RadioButton eng = (RadioButton)findViewById(R.id.radioEng);
+        final RadioButton med = (RadioButton)findViewById(R.id.radioMedic);
+        final RadioButton neither = (RadioButton)findViewById(R.id.radioNeither);
 
         final EditText username = (EditText)findViewById(R.id.editTextUsername_sup);
         final EditText password = (EditText)findViewById(R.id.editTextPassword_sup);
@@ -75,7 +72,7 @@ public class SignUp extends Activity {
             public void onClick(View v) {
 
 
-                String skill = getSkill();
+               String skill = getSkill();
 
 
 
@@ -220,6 +217,9 @@ public class SignUp extends Activity {
 
 
     private String getSkill(){
+
+        RadioButton eng = (RadioButton)findViewById(R.id.radioEng);
+        RadioButton med = (RadioButton)findViewById(R.id.radioMedic);
 
 
         if(eng.isChecked()){
