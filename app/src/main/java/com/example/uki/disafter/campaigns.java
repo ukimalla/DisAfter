@@ -1,43 +1,38 @@
 package com.example.uki.disafter;
 
-import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.app.Activity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
-public class tips extends Activity {
+public class campaigns extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tips);
+        setContentView(R.layout.activity_campaigns);
 
         // Setting up ListView
+        String theList[] = {"Search", "Create", "Manage"};
 
-        String itemList[] = {"First Aid", "How to deal with fear", "Take care of Injuries", "Safety Measures", "House Safety Assessment"};
+        ListView theListView = (ListView)findViewById(R.id.theListView);
 
-        ArrayAdapter theAdapter = new MainActivityAdapter(this, itemList, 0);
-
-        ListView theListView = (ListView) findViewById(R.id.theListView);
+        ArrayAdapter theAdapter = new MainActivityAdapter(campaigns.this, theList, 2);
 
         theListView.setAdapter(theAdapter);
-
-
-
-
-
-
     }
+
+
+
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_tips, menu);
+        getMenuInflater().inflate(R.menu.menu_campaigns, menu);
         return true;
     }
 

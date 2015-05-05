@@ -47,7 +47,7 @@ public class SignUp extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-
+        // Setting up pointers
         final RadioButton eng = (RadioButton)findViewById(R.id.radioEng);
         final RadioButton med = (RadioButton)findViewById(R.id.radioMedic);
         final RadioButton neither = (RadioButton)findViewById(R.id.radioNeither);
@@ -61,9 +61,16 @@ public class SignUp extends Activity {
         final EditText email = (EditText)findViewById(R.id.editTextEmail);
 
 
+        Button btnSignUp = (Button) findViewById(R.id.btnSignUpSubmit);
+
+        //Enabling StrictMode as the http methods don't work without it
+
+
         StrictMode.enableDefaults();
 
-        Button btnSignUp = (Button) findViewById(R.id.btnSignUpSubmit);
+
+
+
 
 
 
@@ -116,7 +123,7 @@ public class SignUp extends Activity {
                     httpEntity = httpResponse.getEntity();
                     String response = EntityUtils.toString(httpEntity);
 
-                    Toast.makeText(SignUp.this, "Success! :)" + response, Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUp.this, " Success! :)" + response, Toast.LENGTH_LONG).show();
 
 
 

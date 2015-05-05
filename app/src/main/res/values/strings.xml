@@ -8,5 +8,7 @@
     <string name="textRight">Volunteer</string>
     <string name="title_activity_log_in">Log In</string>
     <string name="title_activity_sign_up">SignUp</string>
+    <string name="title_activity_volunteer_main">Volunteer Main</string>
+    <string name="title_activity_campaigns">Campaigns</string>
 
 </resources>

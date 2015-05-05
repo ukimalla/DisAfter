@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.uki.disafter" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -32,8 +34,22 @@
             android:name=".SignUp"
             android:label="@string/title_activity_sign_up" >
         </activity>
+        <activity
+            android:name=".volunteerMain"
+            android:label="@string/title_activity_volunteer_main"
+            android:parentActivityName=".LogIn" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.uki.disafter.LogIn" />
+        </activity>
+        <activity
+            android:name=".campaigns"
+            android:label="@string/title_activity_campaigns"
+            android:parentActivityName=".volunteerMain" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.uki.disafter.volunteerMain" />
+        </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

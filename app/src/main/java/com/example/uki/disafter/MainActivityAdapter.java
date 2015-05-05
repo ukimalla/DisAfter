@@ -13,33 +13,70 @@ import android.widget.TextView;
 public class MainActivityAdapter extends ArrayAdapter<String> {
 
 
+    int ActivityLocation;
+
+
+    public MainActivityAdapter(Context context, String[] values, int act) {
+        super(context, R.layout.adapter_main_layout, values);
+        ActivityLocation = act;
+
+    }
 
 
 
-    public MainActivityAdapter(Context context, String[] values) {
-            super(context, R.layout.adapter_main_layout, values);
 
-        }
+    private int getPictureRes(int position) {
 
 
-
-
-    private int getPictureRes(int position){
-        switch(position) {
-            case 0 :
-                return R.drawable.img1 ;
+        switch (ActivityLocation) {
+            // Tips
+            case 0:
+                switch (position) {
+                    case 0:
+                        return R.drawable.img1;
+                    case 1:
+                        return R.drawable.img2;
+                    case 2:
+                        return R.drawable.img3;
+                    case 3:
+                        return R.drawable.img4;
+                    case 4:
+                        return R.drawable.img5;
+                    default:
+                        return R.drawable.img1;
+                }
+             // volunteerMain
             case 1:
-                return R.drawable.img2;
+                switch (position){
+                    case 0:
+                        return R.drawable.img1;
+                    case 1:
+                        return R.drawable.img1;
+                    case 2:
+                        return R.drawable.img1;
+
+                }
+
+             // Campaign
             case 2:
-                return R.drawable.img3;
-            case 3:
-                return R.drawable.img4;
-            case 4:
-                return R.drawable.img5;
+                switch (position) {
+                    case 0:
+                        return R.drawable.img1;
+                    case 1:
+                        return R.drawable.img1;
+                    case 2:
+                        return R.drawable.img1;
+                }
+
+
             default:
                 return R.drawable.img1;
         }
-     }
+    }
+
+
+
+
 
 
     public int getBgColor(int position) {
@@ -63,27 +100,27 @@ public class MainActivityAdapter extends ArrayAdapter<String> {
 
 
     @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
 
-            LayoutInflater theInflater = LayoutInflater.from(getContext());
+        LayoutInflater theInflater = LayoutInflater.from(getContext());
 
-            View theView = theInflater.inflate(R.layout.adapter_main_layout, parent, false);
-
-
-            String itemText = getItem(position);
-            TextView theTextView = (TextView) theView.findViewById(R.id.textView1);
-            theTextView.setText(itemText);
-
-            ImageView theImageView = (ImageView) theView.findViewById(R.id.imageView1);
-            theImageView.setImageResource(getPictureRes(position));
-
-            LinearLayout theLinearLayout = (LinearLayout) theView.findViewById(R.id.background);
-
-            theLinearLayout.setBackgroundResource(getBgColor(position));
+        View theView = theInflater.inflate(R.layout.adapter_main_layout, parent, false);
 
 
+        String itemText = getItem(position);
+        TextView theTextView = (TextView) theView.findViewById(R.id.textView1);
+        theTextView.setText(itemText);
 
-            return theView;
-        }
+        ImageView theImageView = (ImageView) theView.findViewById(R.id.imageView1);
+        theImageView.setImageResource(getPictureRes(position));
+
+        LinearLayout theLinearLayout = (LinearLayout) theView.findViewById(R.id.background);
+
+        theLinearLayout.setBackgroundResource(getBgColor(position));
+
+
+
+        return theView;
     }
+}
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -17,7 +18,26 @@ public class LogIn extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
+        // Setting Pointers
+
         TextView btnSignUp = (TextView)findViewById(R.id.btnSignUp);
+        Button btnLoginIn = (Button)findViewById(R.id.btnLogIn);
+
+
+        //Button ClickListeners
+
+                // Login
+        btnLoginIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LogIn.this, volunteerMain.class);
+                startActivity(i);
+
+            }
+        });
+
+
+                //SignUp
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
