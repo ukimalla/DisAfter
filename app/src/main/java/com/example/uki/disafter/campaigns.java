@@ -41,6 +41,13 @@ public class campaigns extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campaigns);
 
+
+        SessionManagement sessionManagement = new SessionManagement();
+
+        sessionManagement.SessionManager(this);
+
+        sessionManagement.checkLogin();
+
         // Setting up ListView
         String theList[] = {"Search", "Create", "Manage"};
 

@@ -2,13 +2,22 @@ package com.example.uki.disafter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class LogIn extends Activity {
@@ -20,21 +29,70 @@ public class LogIn extends Activity {
 
         // Setting Pointers
 
+            //EditText
+        final EditText editTextUsername = (EditText)findViewById(R.id.editTextUsername);
+        final EditText editTextPassword = (EditText)findViewById(R.id.editTextPassword);
+
+
+            //Buttons
         TextView btnSignUp = (TextView)findViewById(R.id.btnSignUp);
         Button btnLoginIn = (Button)findViewById(R.id.btnLogIn);
 
+        //
 
-        //Button ClickListeners
 
-                // Login
+        final SessionManagement sessionManagement = new SessionManagement();
+
+        sessionManagement.SessionManager(this);
+
+
+
+
+
+
+
+
+       //Button ClickListeners
+
+
+
+
+
+        // Login
         btnLoginIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LogIn.this, volunteerMain.class);
-                startActivity(i);
+
+                final String username = String.valueOf(editTextUsername.getText());
+                final String password = String.valueOf(editTextPassword.getText());
+
+
+                Toast.makeText(LogIn.this, username + password, Toast.LENGTH_LONG).show();
+                if(sessionManagement.validateCredentials(username, password)){
+
+                    sessionManagement.createLogInSession(username,password);
+                    Intent i = new Intent(LogIn.this, volunteerMain.class);
+
+
+
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                    startActivity(i);
+
+
+
+                }
+                else {
+                    Toast.makeText(LogIn.this, "Invalid Username and Password Combination! Please try again.", Toast.LENGTH_LONG).show();
+                }
+
+
+
 
             }
+
         });
+
 
 
                 //SignUp
@@ -47,6 +105,13 @@ public class LogIn extends Activity {
             }
         });
     }
+
+
+
+
+
+
+
 
 
     @Override

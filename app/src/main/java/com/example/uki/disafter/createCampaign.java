@@ -37,6 +37,13 @@ public class createCampaign extends Activity {
         setContentView(R.layout.activity_create_campaign);
 
 
+        SessionManagement sessionManagement = new SessionManagement();
+
+        sessionManagement.SessionManager(this);
+
+        sessionManagement.checkLogin();
+
+
 
         // Setting up pointers
         final RadioButton construction = (RadioButton)findViewById(R.id.radioBtnConstruction);
@@ -62,7 +69,7 @@ public class createCampaign extends Activity {
         //Enabling StrictMode as the http methods don't work without it
 
 
-        StrictMode.enableDefaults();
+
 
 
 
@@ -117,57 +124,12 @@ public class createCampaign extends Activity {
                 Toast.makeText(createCampaign.this, "entering", Toast.LENGTH_LONG).show();
 
 
+                httpHandler httpHandler = new httpHandler();
+
+                httpHandler.postThisShit(createCampaign.this, params,url);
 
 
 
-                try
-                {
-
-                    // Toast to ensure "trying"
-
-                    Toast.makeText(createCampaign.this, "trying", Toast.LENGTH_LONG).show();
-
-
-                    // Setting up httpClient
-
-                    DefaultHttpClient httpClient = new DefaultHttpClient();
-
-
-                    //Setting up httpPost and executing it with httpResponse
-
-                    HttpPost httpPost = new HttpPost(url);
-                    httpPost.setEntity(new UrlEncodedFormEntity(params));
-
-                    HttpResponse httpResponse = httpClient.execute(httpPost);
-
-
-                    //Getting response from server if any.
-
-                    httpEntity = httpResponse.getEntity();
-                    String response = EntityUtils.toString(httpEntity);
-
-                    //To ensure the code was executed successfully
-
-                    Toast.makeText(createCampaign.this, " Success! :)" + response, Toast.LENGTH_LONG).show();
-
-
-
-
-
-                } catch (ClientProtocolException e){
-                    e.printStackTrace();
-
-                    //Toast for Fail
-                    Toast.makeText(createCampaign.this,"fail", Toast.LENGTH_LONG);
-
-
-                }catch (IOException e){
-                    e.printStackTrace();
-
-                    //Toast for Fail
-                    Toast.makeText(createCampaign.this,"fail", Toast.LENGTH_LONG);
-
-                }
             }
         });
 

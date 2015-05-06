@@ -15,6 +15,9 @@ import android.widget.Toast;
 public class volunteerMain extends Activity {
 
 
+
+
+
     private void openActivity(int position){
         switch (position){
             case 0:
@@ -38,6 +41,17 @@ public class volunteerMain extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
+        SessionManagement sessionManagement = new SessionManagement();
+
+        sessionManagement.SessionManager(this);
+
+
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteer_main);
 

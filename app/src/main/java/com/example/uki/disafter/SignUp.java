@@ -66,7 +66,6 @@ public class SignUp extends Activity {
         //Enabling StrictMode as the http methods don't work without it
 
 
-        StrictMode.enableDefaults();
 
 
 
@@ -106,67 +105,21 @@ public class SignUp extends Activity {
 
                 String url = "http://disafter.hostei.com/signup.php";
 
+                httpHandler httpHandler = new httpHandler();
 
-
-                //Initializing httpEntity
-
-                HttpEntity httpEntity = null;
-
-                // Toast to ensure app has run till this point
-                Toast.makeText(SignUp.this, "entering", Toast.LENGTH_LONG).show();
+                httpHandler.postThisShit(SignUp.this, params, url);
 
 
 
 
 
-                try
-                {
-
-                    // Toast to ensure "trying"
-
-                    Toast.makeText(SignUp.this, "trying", Toast.LENGTH_LONG).show();
-
-
-                    // Setting up httpClient
-
-                    DefaultHttpClient httpClient = new DefaultHttpClient();
-
-
-                    //Setting up httpPost and executing it with httpResponse
-
-                    HttpPost  httpPost = new HttpPost(url);
-                    httpPost.setEntity(new UrlEncodedFormEntity(params));
-
-                    HttpResponse httpResponse = httpClient.execute(httpPost);
-
-
-                    //Getting response from server if any.
-
-                    httpEntity = httpResponse.getEntity();
-                    String response = EntityUtils.toString(httpEntity);
-
-                    //To ensure the code was executed succesfully
-
-                    Toast.makeText(SignUp.this, " Success! :)" + response, Toast.LENGTH_LONG).show();
 
 
 
 
 
-                } catch (ClientProtocolException e){
-                    e.printStackTrace();
-
-                    //Toast for Fail
-                    Toast.makeText(SignUp.this,"fail", Toast.LENGTH_LONG);
 
 
-                }catch (IOException e){
-                    e.printStackTrace();
-
-                    //Toast for Fail
-                    Toast.makeText(SignUp.this,"fail", Toast.LENGTH_LONG);
-
-                }
             }
         });
 
