@@ -103,11 +103,11 @@ public class SignUp extends Activity {
                 // URL
 
 
-                String url = "http://disafter.hostei.com/signup.php";
+                String url = "http://bandsnepal.com/disafter/signup.php";
 
-                httpHandler httpHandler = new httpHandler();
+                httpHandler httpHandler = new httpHandler(SignUp.this);
 
-                httpHandler.postThisShit(SignUp.this, params, url);
+                httpHandler.postThisShit(params, url);
 
 
 

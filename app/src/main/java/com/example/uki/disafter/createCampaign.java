@@ -2,7 +2,6 @@ package com.example.uki.disafter;
 
 import android.app.Activity;
 import android.os.StrictMode;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,11 +36,11 @@ public class createCampaign extends Activity {
         setContentView(R.layout.activity_create_campaign);
 
 
-        SessionManagement sessionManagement = new SessionManagement();
+        SessionManagement sessionManagement = new SessionManagement(createCampaign.this);
 
-        sessionManagement.SessionManager(this);
 
-        sessionManagement.checkLogin();
+
+        // sessionManagement.checkLogin();
 
 
 
@@ -112,7 +111,7 @@ public class createCampaign extends Activity {
                 // URL
 
 
-                String url = "http://disafter.hostei.com/createCampaign.php";
+            String url = "http://bandsnepal.com/disafter/createCampaign.php";
 
 
 
@@ -124,9 +123,9 @@ public class createCampaign extends Activity {
                 Toast.makeText(createCampaign.this, "entering", Toast.LENGTH_LONG).show();
 
 
-                httpHandler httpHandler = new httpHandler();
+                httpHandler httpHandler = new httpHandler(createCampaign.this);
 
-                httpHandler.postThisShit(createCampaign.this, params,url);
+                httpHandler.postThisShit(params,url);
 
 
 

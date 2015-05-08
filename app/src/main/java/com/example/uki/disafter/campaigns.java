@@ -42,11 +42,10 @@ public class campaigns extends Activity {
         setContentView(R.layout.activity_campaigns);
 
 
-        SessionManagement sessionManagement = new SessionManagement();
+        SessionManagement sessionManagement = new SessionManagement(campaigns.this);
 
-        sessionManagement.SessionManager(this);
 
-        sessionManagement.checkLogin();
+        // sessionManagement.checkLogin();
 
         // Setting up ListView
         String theList[] = {"Search", "Create", "Manage"};

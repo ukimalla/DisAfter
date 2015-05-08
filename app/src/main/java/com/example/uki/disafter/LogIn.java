@@ -2,9 +2,10 @@ package com.example.uki.disafter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.StrictMode;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,40 +23,35 @@ import java.util.List;
 
 public class LogIn extends Activity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
+
+
         // Setting Pointers
 
-            //EditText
-        final EditText editTextUsername = (EditText)findViewById(R.id.editTextUsername);
-        final EditText editTextPassword = (EditText)findViewById(R.id.editTextPassword);
+        //EditText
+        final EditText editTextUsername = (EditText) findViewById(R.id.editTextUsername);
+        final EditText editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 
 
-            //Buttons
-        TextView btnSignUp = (TextView)findViewById(R.id.btnSignUp);
-        Button btnLoginIn = (Button)findViewById(R.id.btnLogIn);
+        //Buttons
+        TextView btnSignUp = (TextView) findViewById(R.id.btnSignUp);
+        Button btnLoginIn = (Button) findViewById(R.id.btnLogIn);
 
         //
 
 
-        final SessionManagement sessionManagement = new SessionManagement();
-
-        sessionManagement.SessionManager(this);
+        final SessionManagement sessionManagement = new SessionManagement(LogIn.this);
 
 
 
 
-
-
-
-
-       //Button ClickListeners
-
-
-
+        //Button ClickListeners
 
 
         // Login
@@ -68,25 +64,20 @@ public class LogIn extends Activity {
 
 
                 Toast.makeText(LogIn.this, username + password, Toast.LENGTH_LONG).show();
-                if(sessionManagement.validateCredentials(username, password)){
+                if (sessionManagement.validateCredentials(username, password)) {
 
-                    sessionManagement.createLogInSession(username,password);
+                    //sessionManagement.createLogInSession(username,password);
                     Intent i = new Intent(LogIn.this, volunteerMain.class);
 
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-
-                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                     startActivity(i);
 
 
-
-                }
-                else {
+                } else {
                     Toast.makeText(LogIn.this, "Invalid Username and Password Combination! Please try again.", Toast.LENGTH_LONG).show();
                 }
-
-
 
 
             }
@@ -94,8 +85,7 @@ public class LogIn extends Activity {
         });
 
 
-
-                //SignUp
+        //SignUp
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,13 +95,6 @@ public class LogIn extends Activity {
             }
         });
     }
-
-
-
-
-
-
-
 
 
     @Override
@@ -135,4 +118,7 @@ public class LogIn extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }

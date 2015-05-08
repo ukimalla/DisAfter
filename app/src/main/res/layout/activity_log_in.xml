@@ -40,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="149dp"
         android:id="@+id/editTextUsername"
+        android:text="uki.malla"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -62,7 +63,8 @@
         android:layout_alignTop="@id/editTextUsername"
         android:layout_marginTop="90dp"
         android:layout_alignRight="@+id/editTextUsername"
-        android:layout_alignEnd="@+id/editTextUsername" />
+        android:layout_alignEnd="@+id/editTextUsername"
+        android:text="pikachu101"/>
 
         <Button
             android:layout_width="wrap_content"

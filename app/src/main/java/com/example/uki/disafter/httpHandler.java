@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -22,14 +23,18 @@ import java.util.List;
  */
 public class httpHandler {
 
+    private Context context;
+
+    public httpHandler(Context _context){ context = _context;}
 
 
     public String response ="";
 
-    public void postThisShit(Context context, List<NameValuePair> params, String url){
 
 
 
+
+    public void postThisShit(List<NameValuePair> params, String url){
 
 
 
@@ -42,9 +47,7 @@ public class httpHandler {
 
            HttpEntity httpEntity = null;
 
-        // Toast to ensure app has run till this point
-        Log.d("HTTP_HANDLER", "entering");
-        Toast.makeText(context, "entering", Toast.LENGTH_LONG).show();
+
 
 
 
@@ -53,9 +56,7 @@ public class httpHandler {
         try
         {
             Log.d("HTTP_HANDLER", "trying");
-            // Toast to ensure "trying"
 
-            Toast.makeText(context, "trying", Toast.LENGTH_LONG).show();
 
 
             // Setting up httpClient
@@ -81,13 +82,13 @@ public class httpHandler {
             //Getting response from server if any.
 
             httpEntity = httpResponse.getEntity();
-            response = EntityUtils.toString(httpEntity);
+           response = EntityUtils.toString(httpEntity);
 
             //To ensure the code was executed successfully
 
             Log.d("HTTP_HANDLER", "successful");
 
-            Toast.makeText(context, " Success! :)" + response, Toast.LENGTH_LONG).show();
+           Toast.makeText(context, " Success! :)" + response, Toast.LENGTH_LONG).show();
 
 
 
@@ -99,7 +100,7 @@ public class httpHandler {
             e.printStackTrace();
 
             //Toast for Fail
-            Toast.makeText(context,"fail", Toast.LENGTH_LONG);
+           // Toast.makeText(context,"fail", Toast.LENGTH_LONG).show();
 
 
         }catch (IOException e){
@@ -108,7 +109,7 @@ public class httpHandler {
             e.printStackTrace();
 
             //Toast for Fail
-            Toast.makeText(context,"fail", Toast.LENGTH_LONG);
+          //  Toast.makeText(context,"fail", Toast.LENGTH_LONG).show();
 
         }
 

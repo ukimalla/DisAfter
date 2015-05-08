@@ -1,7 +1,9 @@
 package com.example.uki.disafter;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.Activity;
@@ -13,7 +15,6 @@ import android.widget.Toast;
 
 
 public class volunteerMain extends Activity {
-
 
 
 
@@ -41,19 +42,20 @@ public class volunteerMain extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
-        SessionManagement sessionManagement = new SessionManagement();
-
-        sessionManagement.SessionManager(this);
-
-
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteer_main);
+
+        SessionManagement sessionManagement = new SessionManagement(volunteerMain.this);
+
+
+
+        sessionManagement.checkLogin(volunteerMain.this);
+
+
+
+
+
+
 
         // Setting up ListView
 
@@ -107,4 +109,11 @@ public class volunteerMain extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+
+
+
 }

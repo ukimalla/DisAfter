@@ -3,6 +3,9 @@ package com.example.uki.disafter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -19,7 +22,6 @@ public class SessionManagement {
 
 
     SharedPreferences sharedPreferences;
-
     SharedPreferences.Editor editor;
 
     Context _context;
@@ -28,7 +30,7 @@ public class SessionManagement {
 
     int PRIVATE_MODE = 0;
 
-    private static final String PREF_NAME = "Level0";
+    private static final String PREF_NAME = "SessionManagement";
 
     private static final String IS_LOGIN = "IsLoggedIn";
 
@@ -36,36 +38,40 @@ public class SessionManagement {
 
     private static final String KEY_PASS = "pass";
 
+    private static final String LAST_NETWORK_STATUS = "lastNetworkStatus";
 
-    ConnectionDetector connectionDetector = new ConnectionDetector(_context);
 
 
-    public void SessionManager(Context context){
+    public SessionManagement(Context context){
         this._context = context;
-        sharedPreferences = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        this.sharedPreferences = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = sharedPreferences.edit();
     }
-
-
 
 
 
     public void createLogInSession(String username, String password){
 
 
-        ConnectionDetector newConnection = new ConnectionDetector(_context);
 
-        newConnection.loggedIn();
+          editor.putBoolean(IS_LOGIN, true);
+
+          editor.putString(KEY_USER, username);
+
+          editor.putString(KEY_PASS, password);
+
+          editor.putBoolean(LAST_NETWORK_STATUS, true);
+
+
+            editor.apply();
+
+
+            String asd = String.valueOf(sharedPreferences.getBoolean(IS_LOGIN, false));
+
+        Toast.makeText(_context ,"the value of is login is" + asd,Toast.LENGTH_LONG ).show();
 
 
 
-            editor.putBoolean(IS_LOGIN, true);
-
-            editor.putString(KEY_USER, username);
-
-            editor.putString(KEY_PASS, password);
-
-            editor.commit();
 
 
 
@@ -77,8 +83,8 @@ public class SessionManagement {
     public HashMap<String, String> getUserDetails(){
         HashMap<String, String> user = new HashMap<>();
 
-        user.put(KEY_USER, sharedPreferences.getString(KEY_USER, null));
-        user.put(KEY_PASS, sharedPreferences.getString(KEY_PASS, null));
+        user.put(KEY_USER, this.sharedPreferences.getString(KEY_USER, null));
+        user.put(KEY_PASS, this.sharedPreferences.getString(KEY_PASS, null));
 
         return user;
     }
@@ -87,28 +93,44 @@ public class SessionManagement {
 
 
 
-    public void checkLogin() {
+    public void checkLogin(Context cont) {
 
-        if (!sharedPreferences.getBoolean(IS_LOGIN, false)) {
+
+
+        SharedPreferences pref = cont.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+
+        Boolean isLogin = pref.getBoolean(IS_LOGIN,false);
+
+
+
+
+        if (!isLogin) {
             terminateSession();
-
-
         }
-        else if(connectionDetector.checkIfNeedRecheckCredentials(connectionDetector.isConnectingToInternet())){
 
 
+        if(IsRecheckCredentialsNeeded()){
             if (!validateCredentials(sharedPreferences.getString(KEY_USER, null), sharedPreferences.getString(KEY_PASS, null))){
+
                 terminateSession();
+
             }
 
-
         }
+
+
+
+
+
+
     }
+
+
 
      public void logOutUser(){
 
          editor.clear();
-         editor.commit();
+         editor.apply();
 
          Intent i = new Intent(_context, MainActivity.class);
 
@@ -144,24 +166,66 @@ public class SessionManagement {
 
 
         param.add(new BasicNameValuePair("username",username ));
-        param.add(new BasicNameValuePair("password",  password));
+        param.add(new BasicNameValuePair("password", password));
 
 
-        String url = "http://disafter.hostei.com/login.php";
 
-        httpHandler httpHandler = new httpHandler();
 
-        httpHandler.postThisShit(_context, param, url);
+        String url = "http://bandsnepal.com/disafter/login.php";
+
+        httpHandler httpHandler = new httpHandler(_context);
+
+        httpHandler.postThisShit(param, url);
 
        String response = httpHandler.getResponse();
 
+
+
         if(response.equals("Valid User")){
+            createLogInSession(username, password);
             return true;
         }
         else {return false;}
 
 
 
+
+
+    }
+
+    public boolean IsRecheckCredentialsNeeded() {
+
+
+        String PREF_NAME = "SessionManagement";
+
+        final String LAST_NETWORK_STATUS = "lastNetworkStatus";
+
+
+        SharedPreferences sharedPreferences = _context.getSharedPreferences(PREF_NAME, volunteerMain.MODE_PRIVATE);
+
+        Log.d("ALU BUG", "IsRecheckCredentialsNeeded reached");
+
+        connectionChecker connectionChecker = new connectionChecker(_context);
+
+        Log.d("ALU BUG", "CONNECTION CHECKER CREATED");
+
+        if (connectionChecker.checkConnection() && !sharedPreferences.getBoolean(LAST_NETWORK_STATUS, true)) {
+            Log.d("ALU BUG", "chk require");
+
+            editor.putBoolean(LAST_NETWORK_STATUS, true);
+            editor.apply();
+            return true;
+        } else if (!connectionChecker.checkConnection() && sharedPreferences.getBoolean(LAST_NETWORK_STATUS, true)) {
+
+            Log.d("ALU BUG", "wtf no check required");
+            sharedPreferences.edit().putBoolean(LAST_NETWORK_STATUS, false);
+            editor.apply();
+            return false;
+        } else {
+
+            Log.d("ALU BUG", "no check req");
+            return false;
+        }
 
 
     }
@@ -177,11 +241,16 @@ public class SessionManagement {
 
 
 
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
