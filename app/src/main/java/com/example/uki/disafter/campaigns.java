@@ -18,9 +18,13 @@ public class campaigns extends Activity {
 
     private void openActivity(int position){
         switch (position){
+            case 0:
+                Intent searchCampaign = new Intent(campaigns.this, campaignList.class);
+                startActivity(searchCampaign);
+                break;
             case 1:
-                Intent bacteria_intent = new Intent(campaigns.this, createCampaign.class);
-                startActivity(bacteria_intent);
+                Intent createCampaign = new Intent(campaigns.this, createCampaign.class);
+                startActivity(createCampaign);
                 break;
 
             default:
@@ -41,11 +45,12 @@ public class campaigns extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campaigns);
 
-
         SessionManagement sessionManagement = new SessionManagement(campaigns.this);
 
 
-        // sessionManagement.checkLogin();
+
+        sessionManagement.checkLogin(campaigns.this);
+
 
         // Setting up ListView
         String theList[] = {"Search", "Create", "Manage"};

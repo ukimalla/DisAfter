@@ -36,7 +36,15 @@ public class createCampaign extends Activity {
         setContentView(R.layout.activity_create_campaign);
 
 
-        SessionManagement sessionManagement = new SessionManagement(createCampaign.this);
+        final SessionManagement sessionManagement = new SessionManagement(createCampaign.this);
+
+
+
+        sessionManagement.checkLogin(createCampaign.this);
+
+
+
+
 
 
 
@@ -88,6 +96,12 @@ public class createCampaign extends Activity {
 
                 // Initializing param NameValuePar to store SignUp Details
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+
+
+               //Putting userdetails
+
+                params = sessionManagement.getUserDetails();
 
 
 

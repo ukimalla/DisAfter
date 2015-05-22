@@ -36,7 +36,7 @@ public class SessionManagement {
 
     private static final String KEY_USER = "username";
 
-    private static final String KEY_PASS = "pass";
+    private static final String KEY_PASS = "password";
 
     private static final String LAST_NETWORK_STATUS = "lastNetworkStatus";
 
@@ -80,11 +80,13 @@ public class SessionManagement {
 
 
 
-    public HashMap<String, String> getUserDetails(){
-        HashMap<String, String> user = new HashMap<>();
+    public List<NameValuePair> getUserDetails(){
+        List<NameValuePair> user = new ArrayList<NameValuePair>();
 
-        user.put(KEY_USER, this.sharedPreferences.getString(KEY_USER, null));
-        user.put(KEY_PASS, this.sharedPreferences.getString(KEY_PASS, null));
+        user.add(new BasicNameValuePair(KEY_USER, sharedPreferences.getString(KEY_USER, null)));
+        user.add(new BasicNameValuePair(KEY_PASS, sharedPreferences.getString(KEY_PASS, null)));
+
+        Toast.makeText(_context, sharedPreferences.getString(KEY_PASS, null) + sharedPreferences.getString(KEY_USER, null),Toast.LENGTH_LONG).show();
 
         return user;
     }

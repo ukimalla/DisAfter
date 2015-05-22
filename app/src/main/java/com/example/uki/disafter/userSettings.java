@@ -1,43 +1,28 @@
 package com.example.uki.disafter;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.app.Activity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
-public class volunteerMain extends Activity {
-
+import java.util.List;
 
 
 
-    private void openActivity(int position){
-        switch (position){
-            case 0:
-                Intent i = new Intent(volunteerMain.this, campaigns.class);
-                startActivity(i);
-                break;
-            case 2:
-               Intent i_2 = new Intent(volunteerMain.this, userSettings.class);
-                startActivity(i_2);
-                break;
 
-            default:
-                Toast.makeText(volunteerMain.this, "Cannot open activity", Toast.LENGTH_LONG).show();
 
-        }
+public class userSettings extends Activity {
 
 
 
-    }
+
 
 
 
@@ -48,34 +33,23 @@ public class volunteerMain extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_volunteer_main);
+        setContentView(R.layout.activity_user_settings);
 
-        SessionManagement sessionManagement = new SessionManagement(volunteerMain.this);
-
-
-
-        sessionManagement.checkLogin(volunteerMain.this);
-
-
-
-
-
-
-
-        // Setting up ListView
-
-        String theList[] = {"Campaigns", "Profile", "Settings"};
+        SessionManagement sessionManagement = new SessionManagement(userSettings.this);
 
         ListView theListView = (ListView)findViewById(R.id.theListView);
 
-        ArrayAdapter theAdapter = new MainActivityAdapter(volunteerMain.this, theList, 1);
+        String theList[] = {"Change Password", "Delete Account", "Log Out"};
+
+        ArrayAdapter theAdapter = new MainActivityAdapter(userSettings.this, theList, 3);
+
 
         theListView.setAdapter(theAdapter);
 
+        sessionManagement.checkLogin(this);
 
 
 
-        // ListView OnItemClickListener
 
         theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -91,13 +65,15 @@ public class volunteerMain extends Activity {
 
 
 
-    }
 
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_volunteer_main, menu);
+        getMenuInflater().inflate(R.menu.menu_user_settings, menu);
         return true;
     }
 
@@ -118,6 +94,24 @@ public class volunteerMain extends Activity {
 
 
 
+
+
+    private void openActivity(int position){
+        switch (position){
+
+            case 2:
+
+                SessionManagement sessionManagement = new SessionManagement(userSettings.this);
+                sessionManagement.logOutUser();
+                break;
+
+            default:
+                Toast.makeText(userSettings.this, "Cannot open activity", Toast.LENGTH_LONG).show();
+
+        }
+
+
+    }
 
 
 

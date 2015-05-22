@@ -4,4 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="signUpText">16sp</dimen>
     <dimen name="createCampaignText">16sp</dimen>
+    <dimen name="campaignListMainText"> 17sp</dimen>
+    <dimen name="campaignListSubText"> 12sp</dimen>
 </resources>

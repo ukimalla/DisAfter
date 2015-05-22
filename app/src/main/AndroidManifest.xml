@@ -58,6 +58,30 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.uki.disafter.campaigns" />
         </activity>
+        <activity
+            android:name=".userSettings"
+            android:label="@string/title_activity_user_settings"
+            android:parentActivityName=".volunteerMain" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.uki.disafter.volunteerMain" />
+        </activity>
+        <activity
+            android:name=".campaignList"
+            android:label="@string/title_activity_campaign_list"
+            android:parentActivityName=".campaigns" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.uki.disafter.campaigns" />
+        </activity>
+        <activity
+            android:name=".CampaignInfo"
+            android:label="@string/title_activity_campaign_info"
+            android:parentActivityName=".campaignList" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.uki.disafter.campaignList" />
+        </activity>
     </application>
 
 </manifest>

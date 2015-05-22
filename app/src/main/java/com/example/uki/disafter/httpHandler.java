@@ -30,7 +30,7 @@ public class httpHandler {
 
     public String response ="";
 
-
+    public HttpEntity httpEntity = null;
 
 
 
@@ -45,7 +45,7 @@ public class httpHandler {
 
         //Initializing httpEntity
 
-           HttpEntity httpEntity = null;
+
 
 
 
@@ -118,5 +118,9 @@ public class httpHandler {
 
     public String getResponse() {
         return response;
+    }
+
+    public HttpEntity getEntity(){
+        return httpEntity;
     }
 }

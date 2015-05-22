@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewCampaignName"
+            android:text="Campaign Name"
+            android:textSize="@dimen/campaignListMainText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name of the Organization"
+            android:id="@+id/textViewOrganization"
+            android:textSize="@dimen/campaignListSubText"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location: Kathmandu"
+            android:textSize="@dimen/campaignListSubText"
+            android:id="@+id/textViewLocation"
+            android:layout_marginTop="3dp"/>
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type: Construction"
+            android:id="@+id/textViewType"
+            android:textSize="@dimen/campaignListSubText"
+            android:layout_weight="1"
+            />
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Volunteers Required:"
+             android:textSize="@dimen/campaignListSubText"
+             android:id="@+id/textViewVolunteersRequired"
+             android:layout_weight="0.5"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Date: 05/05/2015"
+            android:id="@+id/textViewStartDate"
+            android:textSize="12sp"
+            android:layout_weight="1"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Date: 05/05/2015"
+                android:textSize="12sp"
+                android:layout_weight="0.5"
+                android:id="@+id/textViewENdDate"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
